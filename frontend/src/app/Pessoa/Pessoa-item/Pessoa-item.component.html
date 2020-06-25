@@ -1,0 +1,43 @@
+<div class="card mt-4">
+    <div class="row">
+        <div class="col-4">    
+            
+            <img [src]="Pessoa.foto" 
+                class="img-Pessoa" height="96" 
+            >
+            
+        </div>
+        <div class="col-6">
+            <h4>
+                {{Pessoa.nome}}
+            </h4>
+        </div>
+        <ng-content></ng-content>
+    </div>
+    <div class="row">
+
+        <div class="col-4 mx-1">
+            <span *ngIf="Pessoa.tipo == 'Admin'" class="badge badge-info">
+                Admin
+            </span>
+            <span *ngIf="Pessoa.tipo == 'Não-preferencial'" class="badge badge-success">
+                Não-preferencial
+            </span>
+            <span *ngIf="Pessoa.tipo == 'Grávida/Idoso'" class="badge badge-warning">
+                Grávida/Idoso
+            </span>
+            <span *ngIf="Pessoa.tipo == 'Deficiente'" class="badge badge-danger">
+                Admin
+            </span>
+
+
+        </div>
+
+        <div class="col-6">
+            <span class="text-muted small">
+                {{Pessoa.endereco}}
+            </span>
+        </div>
+
+    </div>
+</div>

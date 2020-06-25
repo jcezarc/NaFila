@@ -1,0 +1,51 @@
+<div class="card mx-auto">
+	<div class="card-header">
+        Fila
+    </div>
+
+    <div class="card-body">
+        <form [formGroup]="FilaForm" novalidate> 
+
+            <div class="form-group">
+                <span>
+                    Olá <strong> {{pessoaAtual}} </strong>! Avalie as últimas filas em que esteve.
+                </span>
+            </div>
+
+                <div class="form-row">
+                    <div *ngIf="isAdmin()" class="col">
+                        <label>Posição da pessoa na fila:</label>
+                        <input formControlName="posicao" type="number" class="form-control" placeholder="Posição"
+                        min="1">
+                    </div>
+                    <div *ngIf="!isAdmin()" class="col">
+                        <label>Avaliação</label>
+                        <input formControlName="avaliacao" type="text" class="form-control" placeholder="Avaliação">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="col">
+                        <label>Loja:</label>
+                        <select formControlName="loja">
+                            <option *ngFor="let loja of lojas" value="{{loja.loja_id}}">
+                                {{loja.nome}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+            <div class=" form-group">
+                <button (click)="FilaList.save(FilaForm.value)" type="button" [disabled]="!FilaForm.valid" 
+                class="btn btn-info btn-block">
+                  Enviar
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<app-Fila-list
+#FilaList
+></app-Fila-list>

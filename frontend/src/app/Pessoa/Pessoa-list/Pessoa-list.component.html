@@ -1,0 +1,18 @@
+<div class="row">
+
+  <div *ngFor="let Pessoa of Navigator.view(items)" class="col-sm-6 col-xs-12">
+    <app-Pessoa-item [Pessoa]="Pessoa">
+          <div>
+              <app-delete-button (delete)="remove(Pessoa)">
+              </app-delete-button>
+          </div>
+    </app-Pessoa-item>
+  </div>
+  <h4 *ngIf="!items" class="jumbotron ml-4">Nenhuma pessoa encontrada. :(</h4>
+  
+</div>
+
+<app-navigator 
+  [maxItems]="4"
+  #Navigator
+></app-navigator>

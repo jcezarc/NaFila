@@ -1,0 +1,16 @@
+<section>
+  <h1>
+    Avaliações
+  </h1>
+</section>
+
+  <app-search-bar
+    (filter)="FilaList.filter($event)"
+    (add)="FilaList.add()"
+  ></app-search-bar>
+
+  <app-Fila-list
+    #FilaList
+  ></app-Fila-list>
+
+  

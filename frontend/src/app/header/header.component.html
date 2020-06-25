@@ -1,0 +1,16 @@
+<div class="navbar navbar navbar-light bg-ligh">
+
+    <a [routerLink]="['/']" class="navbar-brand">
+      <img src="assets/img/logo.png" width="25%">
+      <b>NaFila</b>
+    </a>
+
+    <ul *ngIf="enabledLinks()" class="nav nav-pills">
+       <li class="nav-link"><a [routerLink]="['/Loja']">Loja</a></li>
+       <li class="nav-link"><a [routerLink]="['/Pessoa']">Pessoa</a></li>
+       <li class="nav-link"><a [routerLink]="['/Fila']">Fila</a></li>
+
+    </ul>
+
+</div>
+

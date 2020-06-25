@@ -1,0 +1,42 @@
+<div class="card mt-4">
+    <div class="row">
+        <div class="col-4">    
+
+            <img *nfIf="isAdmin()" [src]="Fila.pessoa.foto"
+            class="img-Fila" height="96" 
+            >
+            
+            <img *nfIf="!isAdmin()" [src]="Fila.loja.logotipo" 
+                class="img-Fila" height="96" 
+            >
+            
+        </div>
+        <div class="col-6">
+            <h4>
+                <a *ngIf="isAdmin()" [routerLink]="['/Pessoa', Fila.pessoa.nome]">
+                    {{Fila.pessoa.nome}}
+                </a>
+                <span *ngIf="!isAdmin()">
+                    {{Fila.loja.nome}}
+                </span>
+            </h4>
+        </div>
+        <ng-content></ng-content>
+    </div>
+    <div class="row">
+
+        <div class="col-4 mx-1">
+
+            <div  *ngFor="let in of stars(Fila)">
+                <i class="fa fa-star fila-star"></i>
+            </div>
+            <br>
+
+        <div class="col-6">
+            <span class="text-muted small">
+                {{Fila.avaliacao}}
+            </span>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="card mx-auto">
+	<div class="card-header">
+        Pessoa
+    </div>
+
+    <div class="card-body">
+        <form [formGroup]="PessoaForm" novalidate> 
+                <div class="form-row">
+                    <div class="col">
+                        <label>Nome:</label>
+                        <input formControlName="nome" type="text" class="form-control" placeholder="Nome">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label>Telefone:</label>
+                        <input formControlName="telefone" type="text" class="form-control" placeholder="Telefone">
+                    </div>
+                    <div class="col">
+                        <label>Senha:</label>
+                        <input formControlName="senha" type="password" class="form-control" placeholder="Senha">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col">
+                        <label>Endereço:</label>
+                        <input formControlName="endereco" type="text" class="form-control" placeholder="Endereço">
+                    </div>
+                </div>
+                
+                <div class="form-row mt-4">
+                    <div class="col mt-3">
+                        <label>Tipo de usuário:</label>
+                        <select formControlName="tipo">
+
+                            <option *ngFor="let tipo of tiposPessoa()" 
+                            value="{{tipo}}">
+                                {{tipo}}
+                            </option>
+                  
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label>Imagem de avatar:</label>
+                        <select formControlName="foto"
+                        (change)="setImage(PessoaForm.value['foto'])">
+                            <option *ngFor="let image of images" value="{{image.path}}"
+                            style="background-image:url({{image.path}})"
+                            >
+                            {{image.name}}
+                            </option>
+                        </select>
+                        <img id="pessoa_avatar" *ngIf="selectedImage" src="{{selectedImage}}" width="50">
+                    </div>
+                </div>
+            
+            <div class=" form-group">
+                <button (click)="PessoaList.save(PessoaForm.value)" type="button" [disabled]="!PessoaForm.valid" 
+                class="btn btn-info btn-block">
+                  Enviar
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<app-Pessoa-list
+#PessoaList
+></app-Pessoa-list>

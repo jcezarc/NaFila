@@ -1,0 +1,78 @@
+<div class="card mx-auto">
+	<div class="card-header">
+        Loja
+    </div>
+
+    <div class="card-body">
+        <form [formGroup]="LojaForm" novalidate> 
+                <div class="form-row">
+                    <div class="col">
+                        <label>Nome:</label>
+                        <input formControlName="nome" type="text" class="form-control" placeholder="Nome">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label>Melhor horário:</label>
+
+                        <select formControlName="melhor_hora">
+                
+                            <option value="Manhã">Manhã</option>
+                            <option value="Meio-dia">Meio-dia</option>
+                             <option value="Tarde">Tarde</option>
+                             <option value="Noite">Noite</option>
+    
+                        </select>
+
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label>Endereço:</label>
+                        <input formControlName="endereco" type="text" class="form-control" placeholder="Endereço" maxlength="255">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label>Logotipo:</label>
+                        <input formControlName="logotipo" type="text" class="form-control" placeholder="logotipo">
+                    </div>
+                </div>
+            <div class="form-group" formGroupName="atend_especial">
+                <div class="form-row">
+                    <div class="custom-control custom-checkbox ml-2">
+                        <input class="custom-control-input" id="checkNaoPreferencial" type="checkbox" formControlName="NaoPreferencial">
+                        <label class="custom-control-label" for="checkNaoPreferencial">Não Preferencial</label>
+                    </div>
+                    <div class="custom-control custom-checkbox ml-2">
+                        <input class="custom-control-input" id="checkAdmin" type="checkbox" formControlName="Admin">
+                        <label class="custom-control-label" for="checkAdmin">Admin</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="custom-control custom-checkbox ml-2">
+                        <input class="custom-control-input" id="checkGravidaIdoso" type="checkbox" formControlName="GravidaIdoso">
+                        <label class="custom-control-label" for="checkGravidaIdoso">Gravida/Idoso</label>
+                    </div>
+                    <div class="custom-control custom-checkbox ml-2">
+                        <input class="custom-control-input" id="checkDeficiente" type="checkbox" formControlName="Deficiente">
+                        <label class="custom-control-label" for="checkDeficiente">Deficiente</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class=" form-group">
+                <button (click)="LojaList.save(LojaForm.value)" type="button" [disabled]="!LojaForm.valid" 
+                class="btn btn-info btn-block">
+                  Enviar
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<app-Loja-list
+#LojaList
+></app-Loja-list>

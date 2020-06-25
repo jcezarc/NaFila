@@ -1,0 +1,27 @@
+<div class="card card-login mx-auto">
+	<div class="card-header">
+        NaFila Login
+    </div>
+    <div class="card-body">
+        <form [formGroup]="loginForm" novalidate> 
+
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input formControlName="nome" type="text" class="form-control" placeholder="Nome">
+                </div>
+                <div class="row">
+                    <div class="col-8 form-group">
+                        <label>Senha:</label>
+                        <input formControlName="senha" type="password" class="form-control">
+                    </div>
+                    <div class="col-4 form-group">
+                        <button (click)="doLogin(loginForm.value)" type="button" [disabled]="!loginForm.valid" 
+                        class="btn btn-info btn-block" style="height:100%">Entrar
+                        </button>
+                    </div>
+                </div>
+
+        </form>
+    </div>
+
+</div>

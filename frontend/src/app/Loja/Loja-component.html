@@ -1,0 +1,16 @@
+<section>
+  <h1>
+    Loja
+  </h1>
+</section>
+
+  <app-search-bar
+    (filter)="LojaList.filter($event)"
+    (add)="LojaList.add()"
+  ></app-search-bar>
+
+  <app-Loja-list
+    #LojaList
+  ></app-Loja-list>
+
+  
