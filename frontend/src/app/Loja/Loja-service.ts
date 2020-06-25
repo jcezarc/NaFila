@@ -29,9 +29,9 @@ export class LojaService{
         )
     }
 
-    lojasByAtendEspec(pessoa: PessoaModel):Observable<Response>{
+    lojasByAtendEspec():Observable<Response>{
         return this.http.get(
-            `${Loja_API}?atend_especial=${pessoa.tipo}`,
+            `${Loja_API}?atend_especial=${PessoaService.currentPessoa.tipo}`,
         )
     }
 
