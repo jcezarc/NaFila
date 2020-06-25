@@ -34,11 +34,11 @@ export class FilaService{
         }
     }
 
-    filasById(text: string):Observable<Response>{
-        return this.http.get(
-            `${Fila_API}?fila_id=${text}`,
-        )
-    }
+    // filasById(text: string):Observable<Response>{
+    //     return this.http.get(
+    //         `${Fila_API}?fila_id=${text}`,
+    //     )
+    // }
 
     filaByPessoa():Observable<Response>{
         return this.http.get(

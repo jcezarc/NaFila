@@ -62,8 +62,20 @@ export class PessoaListComponent implements OnInit {
     this.items.splice(this.items.indexOf(item),1)
   }
 
+  alreadyExistis(search:string){
+    for (let i = 0; i < this.items.length; i++) {
+      const element = this.items[i];
+      if(element.telefone == search) return true      
+    }
+    return false
+  }
+
   save(item: PessoaModel){
     item.foto = PessoaService.selectedImage
+    if(this.alreadyExistis(item.telefone)){
+      alert('Telefone duplicado.')
+      return
+    }
     this.PessoaSvc.savePessoa(item)
     this.items.push(item)
   }

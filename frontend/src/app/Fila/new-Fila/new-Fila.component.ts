@@ -72,9 +72,10 @@ export class NewFilaComponent implements OnInit {
           let lastFilas:FilaModel[] = (<FilaModel[]>obj.data)
           if(this.alreadyExists(lastFilas)){
             alert('Você já está na fila dessa loja!')
+            this.FilaForm.get('loja').setValue('')
             return
           }
-          this.setPosicao(lastFilas.length+1)
+          this.setPosicao(lastFilas)
         }
       )
     }
@@ -83,12 +84,16 @@ export class NewFilaComponent implements OnInit {
       let search:number = PessoaService.currentPessoa.pessoa_id
       for (let i = 0; i < filas.length; i++) {
         const element = filas[i];
-        if(element.pessoa == search) return true
+        if(element.pessoa.pessoa_id == search) return true
       }
       return false
     }
 
-    setPosicao(novaPosicao:number){
+    setPosicao(filas:FilaModel[]){
+      let novaPosicao = 1
+      if(filas){
+        novaPosicao = filas.length + 1
+      }
       this.FilaForm.get('posicao').setValue(novaPosicao)
     }
 

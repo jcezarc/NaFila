@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     PessoaService.currentPessoa = null
     this.loginForm = this.formBuilder.group({
-      nome: this.formBuilder.control('',[Validators.required]),
+      telefone: this.formBuilder.control('',[Validators.required]),
       senha: this.formBuilder.control('',[Validators.required])
     })
   }

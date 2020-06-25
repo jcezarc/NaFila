@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵelementContainerStart, ɵSWITCH_COMPILE_INJECTABLE__POST_R3__ } from '@angular/core';
 import { FilaModel } from '../Fila-model';
 import { FilaService } from '../Fila-service';
 import { Router } from '@angular/router';
 import {RespJsonFlask} from '../../app.api'
 import {PessoaService} from '../../Pessoa/Pessoa-service'
 import {LojaService} from '../../Loja/Loja-service'
+import { PessoaModel } from 'src/app/Pessoa/Pessoa-model';
+import { LojaModel } from 'src/app/Loja/Loja-model';
 
 @Component({
   selector: 'app-Fila-list',
@@ -12,6 +14,7 @@ import {LojaService} from '../../Loja/Loja-service'
 })
 export class FilaListComponent implements OnInit {
 
+  source: FilaModel[]
   items: FilaModel[]
   
   constructor(
@@ -24,19 +27,38 @@ export class FilaListComponent implements OnInit {
     this.FilaSvc.allFilas().subscribe(
       resp => {
         let obj:RespJsonFlask = (<RespJsonFlask>resp.json())
-        this.items = (<FilaModel[]>obj.data)
-        if(!this.items) this.items = []
+        this.source = (<FilaModel[]>obj.data)
+        this.items = []
+        if(this.source) this.items = this.source
       }
     )
   }
 
+  similar(str1, str2: string):Boolean{
+    str1 = str1.toLowerCase()
+    str2 = str2.toLowerCase()
+    return str1.includes(str2)
+  }
+
   filter(param: any){
-    this.FilaSvc.filasById(param.searchContent).subscribe(
-      resp => {
-        let obj:RespJsonFlask = (<RespJsonFlask>resp.json())
-        this.items = (<FilaModel[]>obj.data)
+    this.items = []
+    const search = param.searchContent
+    const byPessoa:Boolean = PessoaService.isAdmin()
+    for (let i = 0; i < this.source.length; i++) {
+      const element = this.source[i];
+      let match:Boolean = false
+      if(byPessoa){
+        let pessoa:PessoaModel = (<PessoaModel>element.pessoa)
+        match = this.similar(pessoa.nome, search)
       }
-    )
+      if(!match){
+        let loja:LojaModel = (<LojaModel>element.loja)
+        match = this.similar(loja.nome, search)
+      }
+      if(match){
+        this.items.push(element)
+      }
+    }
   }
 
   add(){

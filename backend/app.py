@@ -45,7 +45,7 @@ def set_swagger(app):
         swagger_url,
         '/api',
         config={
-            'app_name': "*- loja -*"
+            'app_name': "*- NaFila -*"
         }
     )
     app.register_blueprint(swaggerui_blueprint, url_prefix=swagger_url)

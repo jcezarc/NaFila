@@ -51,7 +51,7 @@ export class PessoaService{
 
     pessoaLogin(params: PessoaModel):void{
         this.http.get(
-            `${Pessoa_API}?nome=${params.nome}&senha=${params.senha}`
+            `${Pessoa_API}?telefone=${params.telefone}&senha=${params.senha}`
         ).subscribe(
             (resp) => {
                 const obj:RespJsonFlask = (<RespJsonFlask>resp.json())
