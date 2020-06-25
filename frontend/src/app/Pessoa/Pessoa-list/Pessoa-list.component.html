@@ -5,6 +5,13 @@
           <div>
               <app-delete-button (delete)="remove(Pessoa)">
               </app-delete-button>
+
+              <button class="selectPessoaBtn"
+              (click)="select(Pessoa)">
+                  <i class="fa fa-check-circle-o"
+                  data-toggle="tooltip" title="Seleciona a pessoa para uma fila"></i>
+              </button>
+
           </div>
     </app-Pessoa-item>
   </div>

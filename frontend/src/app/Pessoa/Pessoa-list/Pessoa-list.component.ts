@@ -9,7 +9,8 @@ import { Observable } from "../../../../node_modules/rxjs";
 
 @Component({
   selector: 'app-Pessoa-list',
-  templateUrl: './Pessoa-list.component.html'
+  templateUrl: './Pessoa-list.component.html',
+  styleUrls: ['./Pessoa-list.component.css']
 })
 export class PessoaListComponent implements OnInit {
 

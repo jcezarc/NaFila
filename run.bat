@@ -3,7 +3,7 @@ if(%1)==(front) goto front
 
 :back
 set NAFILABR_USER=root
-set NAFILABR_PASSWORD=
+set NAFILABR_PASSWORD=aniversarioJorge=25deAbril
 cd backend
 start python app.py
 cd ..

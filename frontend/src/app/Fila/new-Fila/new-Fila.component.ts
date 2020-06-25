@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import {LojaService} from '../../Loja/Loja-service'
 import {LojaModel} from '../../Loja/Loja-model'
 import {PessoaService} from '../../Pessoa/Pessoa-service'
+import {FilaService} from '../../Fila/Fila-service'
+import { FilaModel } from '../Fila-model';
+import { PessoaModel } from 'src/app/Pessoa/Pessoa-model';
 
 
 @Component({
@@ -19,6 +22,7 @@ export class NewFilaComponent implements OnInit {
 
   constructor(
     private LojaSvc: LojaService,
+    private FilaSvc: FilaService,
     private formBuilder: FormBuilder,
     private router: Router
   ) { }
@@ -28,7 +32,11 @@ export class NewFilaComponent implements OnInit {
       this.pessoaAtual = PessoaService.currentPessoa.nome
       // --- Form Builder -------------------------------------------
       this.FilaForm = this.formBuilder.group({
-        posicao : this.formBuilder.control('1',[Validators.required]),
+        pessoa : this.formBuilder.control(
+          PessoaService.currentPessoa.nome,
+          [Validators.required]
+        ),
+        posicao : this.formBuilder.control('1'),
         avaliacao : this.formBuilder.control('',[Validators.required]),
         loja : this.formBuilder.control('', [Validators.required]),
       })
@@ -58,8 +66,30 @@ export class NewFilaComponent implements OnInit {
         return
       }
       LojaService.currentLoja = found
-      let Result = `${PessoaService.currentPessoa.pessoa_id}_${found.loja_id}`
-      this.FilaForm.get('fila_id').setValue(Result)
+      this.FilaSvc.filaByLoja(found.loja_id).subscribe(
+        resp => {
+          let obj:RespJsonFlask = (<RespJsonFlask>resp.json())
+          let lastFilas:FilaModel[] = (<FilaModel[]>obj.data)
+          if(this.alreadyExists(lastFilas)){
+            alert('Você já está na fila dessa loja!')
+            return
+          }
+          this.setPosicao(lastFilas.length+1)
+        }
+      )
+    }
+
+    alreadyExists(filas:FilaModel[]):Boolean{
+      let search:number = PessoaService.currentPessoa.pessoa_id
+      for (let i = 0; i < filas.length; i++) {
+        const element = filas[i];
+        if(element.pessoa == search) return true
+      }
+      return false
+    }
+
+    setPosicao(novaPosicao:number){
+      this.FilaForm.get('posicao').setValue(novaPosicao)
     }
 
     isAdmin():Boolean{

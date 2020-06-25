@@ -7,9 +7,12 @@
         <form [formGroup]="FilaForm" novalidate> 
 
             <div class="form-group">
-                <span>
-                    Olá <strong> {{pessoaAtual}} </strong>! Avalie as últimas filas em que esteve.
-                </span>
+                <div class="form-row">
+                    <div class="col">
+                        <label>Pessoa:</label>
+                        <input formControlName="pessoa" type="text" class="form-control" readonly>
+                    </div>
+                </div>
             </div>
 
                 <div class="form-row">

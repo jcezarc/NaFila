@@ -46,6 +46,12 @@ export class FilaService{
         )
     }
 
+    filaByLoja(loja_id:number):Observable<Response>{
+        return this.http.get(
+            `${Fila_API}?loja_id=${loja_id}`,
+        )
+    }
+
     delete(fila_id: string): void{
         this.http.delete(
             `${Fila_API}/${fila_id}`
