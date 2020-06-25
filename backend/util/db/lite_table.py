@@ -1,8 +1,9 @@
 import sqlite3
 import mysql.connector
-from util.db.db_table import DbTable
+from util.db.fmt_table import FormatTable
 
-class LiteTable(DbTable):
+
+class LiteTable(FormatTable):
     def config(self, table_name, schema, params):
         super().config(table_name, schema, params)
         if 'user' in params:
@@ -40,12 +41,6 @@ class LiteTable(DbTable):
             result.append(record)
         return result
 
-    def get_conditions(self, values, only_pk=True):
-        if not values:
-            return ''
-        super().get_conditions(values, only_pk)
-        return ' AND '.join(self.conditions)
-
     def find_one(self, values):
         found = self.find_all(
             1, self.get_conditions(values)
@@ -62,35 +57,21 @@ class LiteTable(DbTable):
         self.execute(command, True)
 
     def insert(self, json_data):
-        errors = self.validator.validate(json_data)
+        errors = super().insert(json_data)
         if errors:
             return errors
-        insert_values = self.statement_columns(
+        command = self.get_command(
             json_data,
-            True,
-            '{value}'
-        )
-        field_list = [field for field in json_data]
-        command = 'INSERT INTO {} ({})VALUES({})'.format(
-            self.table_name,
-            ','.join(field_list),
-            ','.join(insert_values)
+            is_insert=True,
+            use_quotes=False
         )
         self.execute(command, True)
         return None
 
-    @staticmethod
-    def contained_clause(value):
-        return "LIKE '%" + value + "%'"
-
     def update(self, json_data):
-        update_fields = self.statement_columns(
+        command = self.get_command(
             json_data,
-            False
-        )
-        command = 'UPDATE {} SET {} WHERE {}'.format(
-            self.table_name,
-            ','.join(update_fields),
-            self.get_conditions(json_data)
+            is_insert=False,
+            use_quotes=False
         )
         self.execute(command, True)

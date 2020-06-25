@@ -48,7 +48,7 @@ export class FilaService{
 
     filaByLoja(loja_id:number):Observable<Response>{
         return this.http.get(
-            `${Fila_API}?loja_id=${loja_id}`,
+            `${Fila_API}?loja=${loja_id}`,
         )
     }
 

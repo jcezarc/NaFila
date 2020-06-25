@@ -2,19 +2,27 @@
     <div class="row">
         <div class="col-4">    
 
-            <img *nfIf="isAdmin()" [src]="Fila.pessoa.foto"
-            class="img-Fila" height="96" 
-            >
-            
-            <img *nfIf="!isAdmin()" [src]="Fila.loja.logotipo" 
+            <div *ngIf="isAdmin()">
+                <img  [src]="Fila.pessoa.foto"
                 class="img-Fila" height="96" 
-            >
+                >
+                <br>
+                <a [routerLink]="['/Pessoa', Fila.pessoa.nome]">
+                    {{Fila.pessoa.nome}}
+                </a>
+            </div>
+            <div  *ngIf="!isAdmin()">
+                <img [src]="Fila.loja.logotipo" 
+                class="img-Fila" height="96" 
+                >
+                <br>
+            </div>
             
         </div>
         <div class="col-6">
             <h4>
-                <a *ngIf="isAdmin()" [routerLink]="['/Pessoa', Fila.pessoa.nome]">
-                    {{Fila.pessoa.nome}}
+                <a *ngIf="isAdmin()" [routerLink]="['/Loja', Fila.loja.nome]">
+                    {{Fila.loja.nome}}
                 </a>
                 <span *ngIf="!isAdmin()">
                     {{Fila.loja.nome}}

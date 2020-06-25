@@ -37,7 +37,7 @@ export class NewFilaComponent implements OnInit {
           [Validators.required]
         ),
         posicao : this.formBuilder.control('1'),
-        avaliacao : this.formBuilder.control('',[Validators.required]),
+        avaliacao : this.formBuilder.control(''),
         loja : this.formBuilder.control('', [Validators.required]),
       })
       // ---- Loja List -----------------------------------------------

@@ -51,25 +51,10 @@ export class FilaListComponent implements OnInit {
     this.items.splice(this.items.indexOf(item),1)
   }
 
-  alreadyExists(search: number):Boolean{
-    let Result = false
-    for (let i = 0; i < this.items.length; i++) {
-      const item:FilaModel = this.items[i]
-      if(item.fila_id == search){
-        Result = true
-        break
-      }      
-    }
-    return Result
-  }
-
   save(item: FilaModel){
-    if(this.alreadyExists(item.fila_id)){
-      alert('This fila alreay exists!')
-      return
-    }
     item.pessoa = PessoaService.currentPessoa
     item.loja = LojaService.currentLoja
+    console.log('*** Salvando Fila =>', item)
     this.FilaSvc.saveFila(item)
     this.items.push(item)
   }
