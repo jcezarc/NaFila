@@ -12,6 +12,9 @@ class LiteTable(DbTable):
 
     def execute(self, command, need_commit):
         cursor = self.connection.cursor()
+        print('-'*100)
+        print(command)
+        print('-'*100)
         cursor.execute(command)
         if need_commit:
             self.connection.commit()
@@ -52,7 +55,7 @@ class LiteTable(DbTable):
         return None
 
     def delete(self, values):
-        command = 'DELETE FROM "{}" WHERE {}'.format(
+        command = 'DELETE FROM {} WHERE {}'.format(
             self.table_name,
             self.get_conditions(values)
         )
@@ -85,7 +88,7 @@ class LiteTable(DbTable):
             json_data,
             False
         )
-        command = 'UPDATE "{}" SET {} WHERE {}'.format(
+        command = 'UPDATE {} SET {} WHERE {}'.format(
             self.table_name,
             ','.join(update_fields),
             self.get_conditions(json_data)

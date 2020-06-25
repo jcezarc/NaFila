@@ -51,7 +51,7 @@ export class NewPessoaComponent implements OnInit {
   }
 
   tiposPessoa():string[]{
-    return PessoaService.tipos
+    return PessoaService.tipos(true)
   }
 
 }

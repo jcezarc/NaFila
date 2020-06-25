@@ -60,7 +60,7 @@ export class LojaListComponent implements OnInit {
   }
 
   save(item: LojaModel){
-    const names = PessoaService.tipos
+    const names = PessoaService.tipos(false)
     let Result = []
     names.map(name => {if(item.atend_especial[name]) Result.push(name)})
     item.atend_especial = Result.join()

@@ -4,6 +4,7 @@ import { Observable } from "../../../node_modules/rxjs";
 import { LojaModel } from "./Loja-model";
 import { RespJsonFlask, BASE_PATH_SERVER } from "../app.api";
 import {PessoaService} from '../Pessoa/Pessoa-service'
+import {PessoaModel} from '../Pessoa/Pessoa-model'
 
 const Loja_API = `${BASE_PATH_SERVER}/Loja`
 
@@ -28,9 +29,9 @@ export class LojaService{
         )
     }
 
-    lojasByAtendEspec():Observable<Response>{
+    lojasByAtendEspec(pessoa: PessoaModel):Observable<Response>{
         return this.http.get(
-            `${Loja_API}?atend_especial=${PessoaService.currentPessoa.tipo}`,
+            `${Loja_API}?atend_especial=${pessoa.tipo}`,
         )
     }
 

@@ -11,20 +11,33 @@ const Pessoa_API = `${BASE_PATH_SERVER}/Pessoa`
 @Injectable()
 export class PessoaService{
 
+    static pessoaLogin: PessoaModel
     static currentPessoa: PessoaModel
     static selectedImage: string
-    static tipos: string[] = [
-        'Admin',
-        'Não-Preferencial',
-        'Grávida/Idoso',
-        'Deficiente'
-    ]
+
+    static tipos(comAcento:Boolean): string[] {
+        if(comAcento){
+            return [
+                'Admin',
+                'Não-Preferencial',
+                'Grávida/Idoso',
+                'Deficiente'
+            ]
+        }else{
+            return [
+                'Admin',
+                'NaoPreferencial',
+                'GravidaIdoso',
+                'Deficiente'
+            ]
+        }
+    }
 
     static isAdmin(){
-        if(!PessoaService.currentPessoa){
+        if(!PessoaService.pessoaLogin){
             return false
         }else{
-            return PessoaService.currentPessoa.tipo == "Admin"
+            return PessoaService.pessoaLogin.tipo == "Admin"
         }
     }
 
@@ -43,6 +56,7 @@ export class PessoaService{
             (resp) => {
                 const obj:RespJsonFlask = (<RespJsonFlask>resp.json())
                 const pessoa:PessoaModel = (<PessoaModel> (obj.data) ? obj.data[0] : null)
+                PessoaService.pessoaLogin = pessoa
                 PessoaService.currentPessoa = pessoa
                 if (pessoa){
                     this.router.navigate([this.nextUrl()])

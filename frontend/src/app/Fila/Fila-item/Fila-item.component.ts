@@ -17,12 +17,6 @@ export class FilaItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  stars(item: FilaModel){
-    return Array(
-      Math.round(item.posicao/2)
-    )
-  }
-
   isAdmin():Boolean{
     return PessoaService.isAdmin()
   }
