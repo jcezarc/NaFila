@@ -8,6 +8,12 @@
 
             <div class="form-group">
                 <div class="form-row">
+                    <div class="col-3">
+                        <img  [src]="fotoPessoa()"
+                        style="max-width: 110px;"
+                        class="img-Fila" height="96" 
+                        >
+                    </div>
                     <div class="col">
                         <label>Pessoa:</label>
                         <input formControlName="pessoa" type="text" class="form-control" readonly>
@@ -22,8 +28,7 @@
                         min="1">
                     </div>
                     <div *ngIf="!isAdmin()" class="col">
-                        <label>Avaliação</label>
-                        <input formControlName="avaliacao" type="text" class="form-control" placeholder="Avaliação">
+                        <input formControlName="avaliacao" type="text" rows="5" class="form-control" placeholder="Avaliação">
                     </div>
                 </div>
                 

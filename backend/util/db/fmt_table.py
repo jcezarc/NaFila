@@ -73,8 +73,9 @@ class FormatTable(DbTable):
                     break
         return key, value
 
-    @staticmethod
-    def contained_clause(value):
+    def contained_clause(self, field, value):
+        if field in self.required_fields:
+            return super().contained_clause(field, value)
         return "LIKE '%" + value + "%'"
 
     def get_conditions(self, values, only_pk=True):

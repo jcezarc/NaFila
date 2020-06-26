@@ -6,9 +6,9 @@ PK_DEFAULT_VALUE = 0
 
 class PessoaModel(Schema):
     pessoa_id = Integer(primary_key=True, default=PK_DEFAULT_VALUE)
-    nome = Str(required=True, default='')
+    nome = Str(default='')
     tipo = Str(default='')
-    telefone = Str(default='')
+    telefone = Str(required=True)  #--- Dados de Login
     endereco = Str(default='')
     foto = Str(default='')
-    senha = Str(default='')
+    senha = Str(required=True)   #--- Dados de Login

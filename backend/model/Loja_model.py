@@ -6,8 +6,8 @@ PK_DEFAULT_VALUE = 0
 
 class LojaModel(Schema):
     loja_id = Integer(primary_key=True, default=PK_DEFAULT_VALUE)
-    nome = Str(required=True, default='')
+    nome = Str(default='')
     melhor_hora = Str(default='')
-    endereco = Str(required=True, default='')
+    endereco = Str(default='')
     logotipo = Str(default='')
     atend_especial = Str(default='') # -- Atendimento especial para Deficientes, Idosos, Grávidas etc.

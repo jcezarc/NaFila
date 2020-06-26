@@ -1,9 +1,5 @@
 .img-Fila{
     margin-left: 4px;
     margin-top: 4px;
-}
-.fila-star{
-    float: left;
-    color:#ffc107;
-    margin-left: 2px;
+    max-width: 110px;
 }

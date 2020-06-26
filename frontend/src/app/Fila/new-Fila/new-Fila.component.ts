@@ -101,4 +101,8 @@ export class NewFilaComponent implements OnInit {
       return PessoaService.isAdmin()
     }
 
+    fotoPessoa():string{
+      return PessoaService.currentPessoa.foto
+    }
+
 }

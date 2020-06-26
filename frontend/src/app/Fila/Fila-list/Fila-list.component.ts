@@ -15,7 +15,7 @@ import { LojaModel } from 'src/app/Loja/Loja-model';
 export class FilaListComponent implements OnInit {
 
   source: FilaModel[]
-  items: FilaModel[]
+  items: FilaModel[] = []
   
   constructor(
     private FilaSvc: FilaService,
