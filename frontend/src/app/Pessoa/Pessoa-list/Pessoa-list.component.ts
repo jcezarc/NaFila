@@ -55,7 +55,7 @@ export class PessoaListComponent implements OnInit {
   }
 
   remove(item: PessoaModel){
-    if(!confirm(`Remove Pessoa "${item.nome}" ?`)){
+    if(!confirm(`Remover Pessoa "${item.nome}" ?`)){
       return
     }
     this.PessoaSvc.delete(item.pessoa_id as unknown as number)

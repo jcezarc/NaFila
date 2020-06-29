@@ -66,7 +66,7 @@ export class FilaListComponent implements OnInit {
   }
 
   remove(item: FilaModel){
-    if(!confirm(`Remove Fila "${item.fila_id}" ?`)){
+    if(!confirm(`Remover Fila "${item.fila_id}" ?`)){
       return
     }
     this.FilaSvc.delete(item.fila_id as unknown as string)

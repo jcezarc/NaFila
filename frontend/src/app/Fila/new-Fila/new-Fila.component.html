@@ -28,7 +28,9 @@
                         min="1">
                     </div>
                     <div *ngIf="!isAdmin()" class="col">
-                        <input formControlName="avaliacao" type="text" rows="5" class="form-control" placeholder="Avaliação">
+                        <input formControlName="observacao" type="text" rows="5" class="form-control" placeholder="Observação">
+                        <small style="color:gray; margin-left: 10%"
+                        >* Aqui você diz se vai se atrasar, se precisa de vaga no estacionamento, se vai com seu cachorro</small>
                     </div>
                 </div>
                 

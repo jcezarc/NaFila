@@ -9,6 +9,13 @@ from util.messages import (
 )
 from service.db_connection import get_table
 
+def cep_conditions(txt):
+    regiao = int(txt[:3])
+    ini = '{:03d}'.format(regiao-5)
+    fim = '{:03d}'.format(regiao+5)
+    result = f"cep > '{ini}' AND cep < '{fim}'"
+    return result
+
 class LojaService:
     def __init__(self, table=None):
         if table:
@@ -22,7 +29,11 @@ class LojaService:
             found = self.table.find_one([loja_id])
         else:
             logging.info('Finding all records of Loja...')
-            found = self.table.find_all(20, self.table.get_conditions(params, False))
+            self.table.new_condition_event['CEP'] = cep_conditions
+            found = self.table.find_all(
+                20,
+                self.table.get_conditions(params, False)
+            )
         if not found:
             return resp_not_found()
         return resp_get_ok(found)

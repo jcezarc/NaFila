@@ -2,7 +2,7 @@
 export interface FilaModel{
     fila_id: number
     posicao: number
-    avaliacao: string
+    observacao: string
     loja: any
     pessoa: any
 }

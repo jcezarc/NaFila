@@ -22,12 +22,17 @@
                     </div>
                 </div>
 
+                <app-zip-code 
+                [parentForm]="PessoaForm"
+                (send)=setAddress($event)>
+                </app-zip-code>
                 <div class="form-row">
                     <div class="col">
                         <label>Endereço:</label>
-                        <input formControlName="endereco" type="text" class="form-control" placeholder="Endereço">
+                        <input formControlName="endereco" type="text" class="form-control" readonly>
                     </div>
                 </div>
+            
                 
                 <div class="form-row mt-4">
                     <div class="col mt-3">

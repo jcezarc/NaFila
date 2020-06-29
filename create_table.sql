@@ -1,14 +1,15 @@
 CREATE TABLE Loja(
 	loja_id int PRIMARY KEY auto_increment,
     nome varchar(100) NOT NULL,
+    CEP char(8),
     endereco varchar(255),
     melhor_hora varchar(20),
-    logotipo varchar(255),
-    atend_especial varchar(50)
+    logotipo varchar(255)
 );
 CREATE TABLE Pessoa (
 	pessoa_id int PRIMARY KEY auto_increment,
     nome varchar(100) NOT NULL,
+    CEP char(8),
     tipo varchar(20),
     telefone varchar(50) UNIQUE,
     endereco varchar(255),
@@ -18,7 +19,7 @@ CREATE TABLE Pessoa (
 CREATE TABLE Fila(
 	fila_id int PRIMARY KEY auto_increment,
     posicao int NOT NULL,
-    avaliacao varchar(255),
+    observacao varchar(255),
     loja int REFERENCES Loja(loja_id),
     pessoa int REFERENCES Pessoa(pessoa_id)
 );

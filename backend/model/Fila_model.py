@@ -9,7 +9,7 @@ PK_DEFAULT_VALUE = 0
 class FilaModel(Schema):
     fila_id = Integer(primary_key=True, default=PK_DEFAULT_VALUE)
     posicao = Integer(required=True)
-    avaliacao = Str(required=True)
+    observacao = Str(required=True)
     loja = Nested(LojaModel)
     pessoa = Nested(PessoaModel)
 

@@ -1,0 +1,22 @@
+
+
+<form [formGroup]="zipCodeForm">
+
+    <div class="form-row">
+        <div class="col-2">
+            <label>CEP:</label>
+            <input formControlName="CEP" type="text" 
+            class="form-control" placeholder="CEP" maxlength="8">
+        </div>
+        <div class="col-8">
+            <label>Complemento:</label>
+            <input formControlName="complemento" type="text" 
+            class="form-control" placeholder="complemento" maxlength="50">
+        </div>
+        <button (click)="findZipCode(zipCodeForm.value)"
+        class="btn btn-secondary mt-4">
+            Consultar CEP
+        </button>
+    </div>
+
+</form>

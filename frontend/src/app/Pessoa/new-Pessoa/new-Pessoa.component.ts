@@ -39,6 +39,7 @@ export class NewPessoaComponent implements OnInit {
       nome : this.formBuilder.control('',[Validators.required]),
       tipo : this.formBuilder.control('',[Validators.required]),
       telefone : this.formBuilder.control('',[Validators.required]),
+      // CEP : this.formBuilder.control('',[Validators.required]),
       endereco : this.formBuilder.control('',[Validators.required]),
       foto : this.formBuilder.control('',[Validators.required]),
       senha: this.formBuilder.control('',[Validators.required])
@@ -51,7 +52,11 @@ export class NewPessoaComponent implements OnInit {
   }
 
   tiposPessoa():string[]{
-    return PessoaService.tipos(true)
+    return PessoaService.tipos()
+  }
+
+  setAddress(value: string){
+    this.PessoaForm.get('endereco').setValue(value)
   }
 
 }

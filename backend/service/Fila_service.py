@@ -22,7 +22,10 @@ class FilaService:
             found = self.table.find_one([fila_id])
         else:
             logging.info('Finding all records of Fila...')
-            found = self.table.find_all(20, self.table.get_conditions(params, False))
+            found = self.table.find_all(
+                20,
+                self.table.get_conditions(params, False)
+            )
         if not found:
             return resp_not_found()
         return resp_get_ok(found)

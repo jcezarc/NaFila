@@ -37,11 +37,11 @@ export class NewFilaComponent implements OnInit {
           [Validators.required]
         ),
         posicao : this.formBuilder.control('1'),
-        avaliacao : this.formBuilder.control(''),
+        observacao : this.formBuilder.control(''),
         loja : this.formBuilder.control('', [Validators.required]),
       })
       // ---- Loja List -----------------------------------------------
-      this.LojaSvc.lojasByAtendEspec().subscribe(
+      this.LojaSvc.lojasByCEP().subscribe(
           resp => {
             let obj:RespJsonFlask = (<RespJsonFlask>resp.json())
             this.lojas = (<LojaModel[]>obj.data)

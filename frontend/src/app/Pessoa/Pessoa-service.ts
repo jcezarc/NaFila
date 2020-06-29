@@ -15,22 +15,13 @@ export class PessoaService{
     static currentPessoa: PessoaModel
     static selectedImage: string
 
-    static tipos(comAcento:Boolean): string[] {
-        if(comAcento){
-            return [
-                'Admin',
-                'Não-Preferencial',
-                'Grávida/Idoso',
-                'Deficiente'
-            ]
-        }else{
-            return [
-                'Admin',
-                'NaoPreferencial',
-                'GravidaIdoso',
-                'Deficiente'
-            ]
-        }
+    static tipos(): string[] {
+        return [
+            'Admin',
+            'Não-Preferencial',
+            'Grávida/Idoso',
+            'Deficiente'
+        ]
     }
 
     static isAdmin(){

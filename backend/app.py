@@ -91,7 +91,7 @@ logging.basicConfig(
 )
 
 APP = Flask(__name__)
-CORS(APP)
+CORS(APP, resources={r"/NaFila/*": {"origins": "*"}})
 config_routes(APP)
 set_swagger(APP)
 

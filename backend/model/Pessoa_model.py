@@ -8,7 +8,8 @@ class PessoaModel(Schema):
     pessoa_id = Integer(primary_key=True, default=PK_DEFAULT_VALUE)
     nome = Str(default='')
     tipo = Str(default='')
-    telefone = Str(required=True)  #--- Dados de Login
+    telefone = Str(required=True, default='')  #--- Dados de Login
+    CEP = Str(default='')
     endereco = Str(default='')
     foto = Str(default='')
-    senha = Str(required=True)   #--- Dados de Login
+    senha = Str(required=True, default='')   #--- Dados de Login

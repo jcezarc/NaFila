@@ -25,6 +25,8 @@ import { NavigatorComponent } from './shared/navigator/navigator.component';
 import { SearchBarComponent } from './shared/search-bar/search-bar.component';
 import { DeleteButtonComponent } from './shared/delete-button/delete-button.component';
 import { HeaderComponent } from './header/header.component'
+import {ZipCodeService} from './ZipCode/ZipCode-service'
+import { ZipCodeComponent } from './ZipCode/ZipCode-component'
 import { LoginGuard } from './login/login.guard'
 
 @NgModule({
@@ -46,7 +48,8 @@ import { LoginGuard } from './login/login.guard'
     HeaderComponent,
     SearchBarComponent,
     NavigatorComponent,
-    DeleteButtonComponent
+    DeleteButtonComponent,
+    ZipCodeComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { LoginGuard } from './login/login.guard'
     LojaService,
     PessoaService,
     FilaService,
+    ZipCodeService,
     LoginGuard
   ],
   bootstrap: [AppComponent]

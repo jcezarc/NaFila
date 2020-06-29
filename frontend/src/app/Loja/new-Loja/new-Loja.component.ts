@@ -24,19 +24,17 @@ export class NewLojaComponent implements OnInit {
     this.LojaForm = this.formBuilder.group({
       nome : this.formBuilder.control('',[Validators.required]),
       melhor_hora : this.formBuilder.control('',[Validators.required]),
+      // CEP : this.formBuilder.control('',[Validators.required]),
       endereco : this.formBuilder.control('',[Validators.required]),
       logotipo : this.formBuilder.control('',[Validators.required]),
-      // ---- Atendimento Preferencial da Loja -----
-      atend_especial: this.formBuilder.group({
-          NaoPreferencial: this.formBuilder.control(true),
-          Admin: this.formBuilder.control(true),
-          GravidaIdoso: this.formBuilder.control(true),
-          Deficiente: this.formBuilder.control(true),
-      })
-      // -------------------------------------------
     })
 
                 
   } // ngOnInit()
+
+  setAddress(value: string){
+    console.log('*** Endereço =>', value)
+    this.LojaForm.get('endereco').setValue(value)
+  }
 
 }

@@ -52,7 +52,7 @@ export class LojaListComponent implements OnInit {
   }
 
   remove(item: LojaModel){
-    if(!confirm(`Remove Loja "${item.nome}" ?`)){
+    if(!confirm(`Remover Loja "${item.nome}" ?`)){
       return
     }
     this.LojaSvc.delete(item.loja_id as unknown as number)
@@ -60,10 +60,6 @@ export class LojaListComponent implements OnInit {
   }
 
   save(item: LojaModel){
-    const names = PessoaService.tipos(false)
-    let Result = []
-    names.map(name => {if(item.atend_especial[name]) Result.push(name)})
-    item.atend_especial = Result.join()
     this.LojaSvc.saveLoja(item)
     this.items.push(item)
   }

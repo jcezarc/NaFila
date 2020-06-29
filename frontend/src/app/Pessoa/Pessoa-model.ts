@@ -4,6 +4,7 @@ export interface PessoaModel{
     nome: string
     tipo: string
     telefone: string
+    CEP: string
     endereco: string
     foto: string
     senha: string
