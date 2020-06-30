@@ -40,7 +40,7 @@ import { AddressModel, SearchZipModel } from './ZipCode-model'
     findZipCode(param: SearchZipModel){
         this.zipCodeSvc.getAddress(param.CEP).subscribe(
             resp => {
-                let obj:any = (<AddressModel> resp.json())
+                let obj:AddressModel = (<AddressModel> resp.json())
                 if(obj.logradouro == undefined){
                     alert('CEP não encontrado!')
                     return
