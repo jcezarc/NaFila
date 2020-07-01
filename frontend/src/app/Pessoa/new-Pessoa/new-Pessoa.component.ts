@@ -53,12 +53,14 @@ export class NewPessoaComponent implements OnInit {
   }
 
   tiposPessoa():string[]{
-    return [
-        'Admin',
+    let Result: string[] = [
         'Não-Preferencial',
         'Grávida/Idoso',
         'Deficiente'
     ]
+    if(this.isAdmin())
+      Result.push('Admin')
+    return Result
   }
 
   setAddress(value: string){
