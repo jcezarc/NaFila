@@ -31,11 +31,10 @@
                         <label>Endereço:</label>
                         <input formControlName="endereco" type="text" class="form-control" readonly>
                     </div>
-                </div>
-            
+                </div>            
                 
                 <div class="form-row mt-4">
-                    <div class="col mt-3">
+                    <div class="col">
                         <label>Tipo de usuário:</label>
                         <select formControlName="tipo">
 
@@ -61,16 +60,17 @@
                 </div>
             
             <div class=" form-group">
-                <button (click)="PessoaList.save(PessoaForm.value)" type="button" [disabled]="!PessoaForm.valid" 
-                class="btn btn-info btn-block">
+                <button (click)="PessoaList.save(PessoaForm.value)" type="button"
+                [disabled]="!PessoaForm.valid" class="btn btn-info btn-block">
                   Enviar
                 </button>
             </div>
+
         </form>
     </div>
 
 </div>
 
-<app-Pessoa-list
+<app-Pessoa-list [hidden]="!isAdmin()"
 #PessoaList
 ></app-Pessoa-list>

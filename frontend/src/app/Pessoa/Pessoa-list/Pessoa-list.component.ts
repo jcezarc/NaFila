@@ -24,6 +24,9 @@ export class PessoaListComponent implements OnInit {
 
   ngOnInit() {
     this.router.onSameUrlNavigation = "reload"
+    if(!PessoaService.isAdmin()){
+      return // Para não-Administradores, não permite acessar os outros usuários
+    }
     const param = this.activatedRoute.snapshot.paramMap.get('name');
     let func: Observable<Response>
     if(param){
@@ -62,7 +65,7 @@ export class PessoaListComponent implements OnInit {
     this.items.splice(this.items.indexOf(item),1)
   }
 
-  alreadyExistis(search:string){
+  alreadyExists(search:string){
     for (let i = 0; i < this.items.length; i++) {
       const element = this.items[i];
       if(element.telefone == search) return true      
@@ -71,8 +74,7 @@ export class PessoaListComponent implements OnInit {
   }
 
   save(item: PessoaModel){
-    item.foto = PessoaService.selectedImage
-    if(this.alreadyExistis(item.telefone)){
+    if(this.alreadyExists(item.telefone)){
       alert('Telefone duplicado.')
       return
     }

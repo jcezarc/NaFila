@@ -29,6 +29,7 @@ export class NewFilaComponent implements OnInit {
 
   ngOnInit() {
       this.router.onSameUrlNavigation = "reload"
+      console.log('*** Pessoa Atual =>', PessoaService.currentPessoa)
       this.pessoaAtual = PessoaService.currentPessoa.nome
       // --- Form Builder -------------------------------------------
       this.FilaForm = this.formBuilder.group({

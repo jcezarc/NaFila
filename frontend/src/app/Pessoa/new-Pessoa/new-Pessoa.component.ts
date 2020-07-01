@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PessoaImageModel } from '../Pessoa-model';
+import { PessoaImageModel, PessoaModel } from '../Pessoa-model';
 import { PessoaService } from '../Pessoa-service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {PessoaListComponent} from '../Pessoa-list/Pessoa-list.component'
 
 
 @Component({
@@ -52,11 +53,20 @@ export class NewPessoaComponent implements OnInit {
   }
 
   tiposPessoa():string[]{
-    return PessoaService.tipos()
+    return [
+        'Admin',
+        'Não-Preferencial',
+        'Grávida/Idoso',
+        'Deficiente'
+    ]
   }
 
   setAddress(value: string){
     this.PessoaForm.get('endereco').setValue(value)
+  }
+
+  isAdmin():Boolean{
+    return PessoaService.isAdmin()
   }
 
 }

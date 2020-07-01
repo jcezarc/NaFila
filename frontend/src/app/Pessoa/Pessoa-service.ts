@@ -15,15 +15,6 @@ export class PessoaService{
     static currentPessoa: PessoaModel
     static selectedImage: string
 
-    static tipos(): string[] {
-        return [
-            'Admin',
-            'Não-Preferencial',
-            'Grávida/Idoso',
-            'Deficiente'
-        ]
-    }
-
     static isAdmin(){
         if(!PessoaService.pessoaLogin){
             return false
@@ -91,19 +82,22 @@ export class PessoaService{
         )
     }
 
-    savePessoa(newItem: PessoaModel): void{
+    savePessoa(newPessoa: PessoaModel): void{
+        newPessoa.foto = PessoaService.selectedImage
         const headers: Headers = new Headers()
         headers.append('Content-Type','application/json')
         headers.append('Access-Control-Allow-Origin','*')
         this.http.post(
             Pessoa_API,
-            JSON.stringify(newItem),
+            JSON.stringify(newPessoa),
             new RequestOptions({headers:headers})
         ).subscribe(
             resp => {
                 const obj:RespJsonFlask = (<RespJsonFlask>resp.json())
-                let data:PessoaModel = (<PessoaModel>obj.data)
-                console.log('"savePessoa" = ', data)
+                console.log('Resposta da inclusão de Pessoa: ', obj)
+                PessoaService.currentPessoa = newPessoa
+                if(!PessoaService.isAdmin())
+                    this.router.navigate(['new-Fila'])
             }
         )
     }

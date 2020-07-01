@@ -59,7 +59,19 @@ export class LojaListComponent implements OnInit {
     this.items.splice(this.items.indexOf(item),1)
   }
 
+  alreadyExists(search: string):Boolean{
+    for (let i = 0; i < this.items.length; i++) {
+      const element:LojaModel = this.items[i];
+      if(element.nome == search) return true      
+    }
+    return false
+  }
+
   save(item: LojaModel){
+    if(this.alreadyExists(item.nome)){
+      alert('A loja já existe.')
+      return
+    }
     this.LojaSvc.saveLoja(item)
     this.items.push(item)
   }

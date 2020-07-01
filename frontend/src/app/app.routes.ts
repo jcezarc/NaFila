@@ -15,7 +15,11 @@ export const ROUTES:Routes = [
     {path:'new-Loja',component:NewLojaComponent,canActivate: [LoginGuard]},
     {path:'Pessoa',component:PessoaComponent,canActivate: [LoginGuard]},
     {path:'Pessoa/:name',component:PessoaComponent,canActivate: [LoginGuard]},
-    {path:'new-Pessoa',component:NewPessoaComponent,canActivate: [LoginGuard]},
-    {path:'Fila',component:FilaComponent,canActivate: [LoginGuard]},
+    {path:'new-Pessoa',component:NewPessoaComponent
+    // ,canActivate: [LoginGuard]
+    },
+    {path:'Fila',component:FilaComponent
+    // ,canActivate: [LoginGuard]
+    },
     {path:'new-Fila',component:NewFilaComponent,canActivate: [LoginGuard]},
 ]

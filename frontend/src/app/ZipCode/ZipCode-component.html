@@ -13,10 +13,12 @@
             <input formControlName="complemento" type="text" 
             class="form-control" placeholder="complemento" maxlength="50">
         </div>
-        <button (click)="findZipCode(zipCodeForm.value)"
-        class="btn btn-secondary mt-4">
-            Consultar CEP
-        </button>
+        <div class="col-2">
+            <button (click)="findZipCode(zipCodeForm.value)"
+            class="btn btn-secondary mt-4">
+                Consultar CEP
+            </button>    
+        </div>
     </div>
 
 </form>
