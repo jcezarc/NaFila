@@ -38,6 +38,7 @@ export class PessoaListComponent implements OnInit {
       resp => {
         let obj:RespJsonFlask = (<RespJsonFlask>resp.json())
         this.items = (<PessoaModel[]>obj.data)
+        if(!this.items) this.items = []
       }
     )
   }

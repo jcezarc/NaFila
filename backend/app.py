@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import logging
 import uuid
 from flask import Flask, Blueprint, jsonify, request
@@ -122,11 +123,14 @@ def handshake():
     user = request.json.get('user')
     password = request.json.get('password')
     found, user_id = valid_user(user, password)
-    print('*** HandShake =>', found)
     if not found:
         return "Invalid user", 403
     access_token = create_access_token(identity=user_id)
     return jsonify(access_token=access_token), 200
 
 if __name__ == '__main__':
-    APP.run(debug=True)
+    APP.run(
+        debug=True,
+        port=os.environ.get('PORT', 5000),
+        host='0.0.0.0'
+    )

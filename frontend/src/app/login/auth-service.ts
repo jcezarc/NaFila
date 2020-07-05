@@ -30,7 +30,6 @@ export class AuthService{
     }
 
     handShake(){
-        console.log('*** HandShake =>', HandShakeURL) 
         const perfil = {
             user: 'SubZero',
             password: 'Zenit Polar'
@@ -46,7 +45,6 @@ export class AuthService{
                 AuthService.header = this.getHeaders(
                     obj.access_token
                 )
-                console.log('*** Login header =>', AuthService.header)
             }
         )
     }

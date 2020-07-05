@@ -36,15 +36,15 @@ def get_table(schema):
     #     "database": "nafilabr"
     # })
     # --- Postgres -------------------------
-    # return SqlTable(schema, {
-    #     "dialect": "postgresql",
-    #     "driver": "psycopg2",
-    #     "username": NAFILABR_USER,
-    #     "password": NAFILABR_PASSWORD,
-    #     "host": NAFILABR_HOST,
-    #     "port": "5432",
-    #     "database": "nafilabr"
-    # })
+    return SqlTable(schema, {
+        "dialect": "postgresql",
+        "driver": "psycopg2",
+        "username": NAFILABR_USER,
+        "password": NAFILABR_PASSWORD,
+        "host": NAFILABR_HOST,
+        "port": "5432",
+        "database": "d1nrcafrs50ogg"
+    })
     # # --- Neo4J -----------------------------
     # return Neo4Table(schema, {
     #     "host": NAFILABR_HOST,
@@ -60,9 +60,9 @@ def get_table(schema):
     #     "check_same_thread": True
     # })
     # --- MySql ----------------------------
-    return LiteTable(schema, {
-        "host": NAFILABR_HOST,
-        "user": NAFILABR_USER,
-        "password": NAFILABR_PASSWORD,
-        "database": "nafila"
-    })
+    # return LiteTable(schema, {
+    #     "host": NAFILABR_HOST,
+    #     "user": NAFILABR_USER,
+    #     "password": NAFILABR_PASSWORD,
+    #     "database": "nafila"
+    # })

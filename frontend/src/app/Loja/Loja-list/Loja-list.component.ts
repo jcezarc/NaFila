@@ -34,6 +34,7 @@ export class LojaListComponent implements OnInit {
       resp => {
         let obj:RespJsonFlask = (<RespJsonFlask>resp.json())
         this.items = (<LojaModel[]>obj.data)
+        if(!this.items) this.items = []
       }
     )
   }

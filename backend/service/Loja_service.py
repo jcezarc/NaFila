@@ -13,7 +13,11 @@ def cep_conditions(txt):
     regiao = int(txt[:3])
     ini = '{:03d}'.format(regiao-5)
     fim = '{:03d}'.format(regiao+5)
-    result = f"cep > '{ini}' AND cep < '{fim}'"
+    field_name = '"CEP"'
+    result = "{} > '{}' AND {} < '{}'".format(
+        field_name, ini,
+        field_name, fim,
+    )
     return result
 
 class LojaService:

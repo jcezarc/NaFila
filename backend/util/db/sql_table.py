@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from marshmallow.fields import Str, Nested
 from util.db.fmt_table import FormatTable
 
-CON_STR = '{dialect}+{driver}://{pessoaname}:{password}@{host}:{port}/{database}'
+CON_STR = '{dialect}+{driver}://{username}:{password}@{host}:{port}/{database}'
 
 class SqlTable(FormatTable):
     def config(self, table_name, schema, params):
@@ -24,6 +24,9 @@ class SqlTable(FormatTable):
             is_insert=True,
             use_quotes=True
         )
+        print('-'*100)
+        print(command)
+        print('-'*100)
         self.session.execute(command)
         self.session.commit()
         return None
@@ -34,6 +37,9 @@ class SqlTable(FormatTable):
             is_insert=False,
             use_quotes=True
         )
+        print('-'*100)
+        print(command)
+        print('-'*100)
         self.session.execute(command)
         self.session.commit()
 
@@ -59,6 +65,28 @@ class SqlTable(FormatTable):
             )
         return fields, curr_table, expr_join
 
+    def inflate(self, value, record, prefix):
+        search = prefix.pop(0)
+        key = search
+        if prefix:
+            for field in self.joins:
+                join = self.joins[field]
+                if join.alias == search:
+                    result = record.get(field)
+                    if not isinstance(result, dict) :
+                        result = {}
+                    key, value = join.inflate(
+                        value,
+                        result,
+                        prefix
+                    )
+                    result[key] = value
+                    key = field
+                    value = result
+                    break
+        return key, value
+
+
     def find_all(self, limit=0, filter_expr=''):
         fields, curr_table, expr_join = self.query_elements()
         command = 'SELECT {} \nFROM {} {}'.format(
@@ -74,6 +102,9 @@ class SqlTable(FormatTable):
                     filter_expr
                 )
             command += '\n' + filter_expr
+        print('-'*100)
+        print(command)
+        print('-'*100)
         dataset = self.session.execute(command)
         result = []
         for row in dataset.fetchall():
@@ -103,5 +134,8 @@ class SqlTable(FormatTable):
             self.table_name,
             self.get_conditions(values)
         )
+        print('-'*100)
+        print(command)
+        print('-'*100)
         self.session.execute(command)
         self.session.commit()
