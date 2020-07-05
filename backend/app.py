@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 import uuid
-from flask import Flask, Blueprint, jsonify
+from flask import Flask, Blueprint, jsonify, request
 from flask_restful import Api
 from flask_cors import CORS
 from flask_swagger_ui import get_swaggerui_blueprint
@@ -118,10 +118,11 @@ def health():
     return 'OK', 200
 
 @APP.route('/handshake', methods=['POST'])
-def login():
+def handshake():
     user = request.json.get('user')
     password = request.json.get('password')
     found, user_id = valid_user(user, password)
+    print('*** HandShake =>', found)
     if not found:
         return "Invalid user", 403
     access_token = create_access_token(identity=user_id)

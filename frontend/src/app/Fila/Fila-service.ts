@@ -4,6 +4,7 @@ import { Observable } from "../../../node_modules/rxjs";
 import { FilaModel } from "./Fila-model";
 import { RespJsonFlask, BASE_PATH_SERVER } from "../app.api";
 import { PessoaService } from '../Pessoa/Pessoa-service'
+import { AuthService } from '../login/auth-service'
 
 const Fila_API = `${BASE_PATH_SERVER}/Fila`
 
@@ -28,33 +29,31 @@ export class FilaService{
         if(PessoaService.isAdmin()){
             return this.http.get(
                 Fila_API
-            )
+                ,new RequestOptions({headers: AuthService.header})
+                )
         }else{
             return this.filaByPessoa()
         }
     }
 
-    // filasById(text: string):Observable<Response>{
-    //     return this.http.get(
-    //         `${Fila_API}?fila_id=${text}`,
-    //     )
-    // }
-
     filaByPessoa():Observable<Response>{
         return this.http.get(
-            `${Fila_API}?pessoa=${PessoaService.currentPessoa.pessoa_id}`,
+            `${Fila_API}?pessoa=${PessoaService.currentPessoa.pessoa_id}`
+            ,new RequestOptions({headers: AuthService.header})
         )
     }
 
     filaByLoja(loja_id:number):Observable<Response>{
         return this.http.get(
-            `${Fila_API}?loja=${loja_id}`,
+            `${Fila_API}?loja=${loja_id}`
+            ,new RequestOptions({headers: AuthService.header})
         )
     }
 
     delete(fila_id: string): void{
         this.http.delete(
             `${Fila_API}/${fila_id}`
+            ,new RequestOptions({headers: AuthService.header})
         ).subscribe(
             resp => {
                 const obj:RespJsonFlask = (<RespJsonFlask>resp.json())
@@ -64,14 +63,10 @@ export class FilaService{
     }
 
     saveFila(newItem: FilaModel): void{
-        const headers: Headers = new Headers()
-        headers.append('Content-Type','application/json')
-        headers.append('Access-Control-Allow-Origin','*')
         this.http.post(
             Fila_API,
-            // JSON.stringify(newItem),
-            newItem,
-            new RequestOptions({headers:headers})
+            newItem
+            ,new RequestOptions({headers: AuthService.header})
         ).subscribe(
             resp => {
                 const obj:RespJsonFlask = (<RespJsonFlask>resp.json())

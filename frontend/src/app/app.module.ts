@@ -27,6 +27,7 @@ import { DeleteButtonComponent } from './shared/delete-button/delete-button.comp
 import { HeaderComponent } from './header/header.component'
 import {ZipCodeService} from './ZipCode/ZipCode-service'
 import { ZipCodeComponent } from './ZipCode/ZipCode-component'
+import { AuthService } from './login/auth-service'
 import { LoginGuard } from './login/login.guard'
 
 @NgModule({
@@ -62,6 +63,7 @@ import { LoginGuard } from './login/login.guard'
     PessoaService,
     FilaService,
     ZipCodeService,
+    AuthService,
     LoginGuard
   ],
   bootstrap: [AppComponent]
