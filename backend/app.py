@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 import logging
+import uuid
 from flask import Flask, Blueprint, jsonify
 from flask_restful import Api
 from flask_cors import CORS
 from flask_swagger_ui import get_swaggerui_blueprint
+from flask_jwt_extended import create_access_token, JWTManager
+from resource.user_controller import valid_user
 from util.swagger_generator import FlaskSwaggerGenerator
 from model.Loja_model import LojaModel
 from resource.Loja_by_id import LojaById
@@ -91,7 +94,9 @@ logging.basicConfig(
 )
 
 APP = Flask(__name__)
-CORS(APP, resources={r"/NaFila/*": {"origins": "*"}})
+CORS(APP)
+APP.config['JWT_SECRET_KEY'] = str(uuid.uuid4())
+JWT = JWTManager(APP)
 config_routes(APP)
 set_swagger(APP)
 
@@ -111,6 +116,16 @@ def get_api():
 @APP.route('/health')
 def health():
     return 'OK', 200
+
+@APP.route('/handshake', methods=['POST'])
+def login():
+    user = request.json.get('user')
+    password = request.json.get('password')
+    found, user_id = valid_user(user, password)
+    if not found:
+        return "Invalid user", 403
+    access_token = create_access_token(identity=user_id)
+    return jsonify(access_token=access_token), 200
 
 if __name__ == '__main__':
     APP.run(debug=True)
