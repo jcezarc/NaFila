@@ -9,7 +9,7 @@ Existem 3 entidades:
 
 ### Sequência de uso
 * Fazer o login na tela inicial
-    (Quem não tem cadastro pode fazê-lo através de um link abaixo);
+    (Quem não tem cadastro pode fazê-lo através de um link nessa tela);
 * Entrar na fila de uma loja *proxima*;
     (Por enquanto o sistema usa o CEP como medidor
     de localização, mas o ideal é uma API de 
